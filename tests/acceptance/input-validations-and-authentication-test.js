@@ -18,7 +18,7 @@ module('Acceptance: InputValidationsAndAuthentication', {
     var applicationRoute = application.__container__.lookup('route:application');
     fbRef = applicationRoute.get('firebase');
     session = applicationRoute.get('session');
-    
+
     fbRef.autoFlush();
   },
   teardown: function() {
