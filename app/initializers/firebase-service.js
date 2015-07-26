@@ -1,6 +1,6 @@
 import config from '../config/environment';
 
-export function initialize(container, application) {
+export function initialize(registry, application) {
   /**
    * Updated to work without EmberFire and use Firebase directly.
    *
