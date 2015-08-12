@@ -7,14 +7,19 @@ import Base from 'simple-auth/authenticators/base';
 export default Base.extend({
 
   restore: function(data) {
+    var _this = this;
     var ref = this.get('firebase');
+
     return new Ember.RSVP.Promise(function(resolve, reject) {
       var authData = ref.getAuth();
-      if (authData) {
-        resolve(data);
-      } else {
-        reject(data);
-      }
+
+      if(!data.token) return reject();
+      if(authData) return resolve(data);
+
+      ref.authWithCustomToken(data.token, function(error, authData){
+        if(error) reject(error);
+        resolve(authData);
+      });
     });
   },
 
